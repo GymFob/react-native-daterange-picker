@@ -33,6 +33,7 @@ const DateRangePicker = ({
   selectedStyle,
   selectedTextStyle,
   disabledStyle,
+  weekStyle,
   dayStyle,
   dayTextStyle,
   disabledTextStyle,
@@ -69,6 +70,10 @@ const DateRangePicker = ({
     headerText: {
       ...styles.headerText,
       ...headerTextStyle,
+    },
+    week: {
+      ...styles.week,
+      ...weekStyle,
     },
     monthButtons: {
       ...styles.monthButtons,
@@ -272,7 +277,7 @@ const DateRangePicker = ({
             );
           }
           _weeks.push(
-            <View key={"weeks-" + i} style={styles.week}>
+            <View key={"weeks-" + i} style={mergedStyles.week}>
               {week}
             </View>
           );
