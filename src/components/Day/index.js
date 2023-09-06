@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { height, width } from "../../modules";
+// import { height, width } from "../../modules";
 
 const Day = ({
   index,
@@ -73,8 +73,8 @@ export default Day;
 
 const styles = StyleSheet.create({
   day: {
-    width: width * 0.09,
-    height: height * 0.065,
+    // width: width * 0.09,
+    // height: height * 0.065,
     justifyContent: "center",
   },
   dayText: {

@@ -12,7 +12,7 @@ import {
 import Button from "./components/Button";
 import Day from "./components/Day";
 import Header from "./components/Header";
-import { height, width } from "./modules";
+// import { height, width } from "./modules";
 import chevronL from "./assets/chevronL.png";
 import chevronR from "./assets/chevronR.png";
 
@@ -246,7 +246,7 @@ const DateRangePicker = ({
       let offset = startOfMonth.weekday();
       week = week.concat(
         Array.from({ length: offset }, (x, i) => (
-          <Day empty key={"empty-" + i} />
+          <Day empty key={"empty-" + i} dayStyle={dayStyle} />
         ))
       );
       for (let i = 1; i <= daysInMonth; ++i) {
@@ -272,7 +272,7 @@ const DateRangePicker = ({
           if (week.length < 7) {
             week = week.concat(
               Array.from({ length: 7 - week.length }, (x, index) => (
-                <Day empty key={"empty-" + index} />
+                <Day empty key={"empty-" + index} dayStyle={dayStyle} />
               ))
             );
           }
@@ -437,6 +437,9 @@ DateRangePicker.propTypes = {
   buttonContainerStyle: PropTypes.object,
   presetButtons: PropTypes.bool,
 };
+
+let height = 300;
+let width = 300;
 
 const styles = StyleSheet.create({
   backdrop: {

@@ -9,11 +9,23 @@ A React Native component for picking date ranges or single dates.
 
 ## Installation
 
-`yarn add react-native-daterange-picker`
+`yarn add GymFob/react-native-daterange-picker`
 
 or
 
-`npm install --save react-native-daterange-picker`
+`npm install --save GymFob/react-native-daterange-picker`
+
+## Local Development
+- Form the repo locally but outside your target project.
+- Remove the original component `'yarn [workspace ____] remove react-native-daterange-picker'`
+- Add this forked component `'yarn [workspace ____] add GymFob/react-native-daterange-picker'`
+- To test with local edits:
+  - Stop the project
+  - Remove and add the local file: `'yarn workspace web remove react-native-daterange-picker && yarn workspace web add -W file:~/Code/GymFobApp/gymfob/forked_repos/react-native-daterange-picker'`
+  - the `add '-W'` flag is require to temporarily bypass checks which would block this from being added.
+- If the component doesn't seem to get pulling the latest code updates, then try:
+  - `'yarn reset'` to delete all node_modules directories and yarn.lock files.
+  - `'yarn workspace web add -W file:/Users/gbach/Code/GymFobApp/gymfob/forked_repos/react-native-daterange-picker'`
 
 ## Usage
 
