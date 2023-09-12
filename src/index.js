@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  Pressable,
   View,
   Image,
 } from "react-native";
@@ -315,28 +315,26 @@ const DateRangePicker = ({
   ]);
 
   const node = (
-    <View>
-      <TouchableWithoutFeedback onPress={_onOpen}>
-        {children ? (
-          children
-        ) : (
-          <View>
-            <Text>Click me to show date picker</Text>
-          </View>
-        )}
-      </TouchableWithoutFeedback>
-    </View>
+    <Pressable onPress={_onOpen}>
+      {children ? (
+        children
+      ) : (
+        <View>
+          <Text>Click me to show date picker</Text>
+        </View>
+      )}
+    </Pressable>
   );
 
   return isOpen ? (
     <>
       <View style={mergedStyles.backdrop}>
-        <TouchableWithoutFeedback
+        <Pressable
           style={styles.closeTrigger}
           onPress={_onClose}
         >
           <View style={styles.closeContainer} />
-        </TouchableWithoutFeedback>
+        </Pressable>
         <View>
           <View style={mergedStyles.container}>
             <View style={styles.header}>
