@@ -329,12 +329,12 @@ const DateRangePicker = ({
   return isOpen ? (
     <>
       <View style={mergedStyles.backdrop}>
-        <Pressable
+        {/* <Pressable
           style={styles.closeTrigger}
           onPress={_onClose}
         >
           <View style={styles.closeContainer} />
-        </Pressable>
+        </Pressable> */}
         <View>
           <View style={mergedStyles.container}>
             <View style={styles.header}>
