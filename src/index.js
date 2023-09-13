@@ -112,13 +112,13 @@ const DateRangePicker = ({
 
   const previousMonth = () => {
     onChange({
-      displayedDate: _moment(displayedDate).subtract(1, "months"),
+      displayedDate: _moment(displayedDate).subtract(1,"months"),
     });
   };
 
   const nextMonth = () => {
     onChange({
-      displayedDate: _moment(displayedDate).add(1, "months"),
+      displayedDate: _moment(displayedDate).add(1,"months"),
     });
   };
 
@@ -336,30 +336,56 @@ const DateRangePicker = ({
         </Pressable> */}
         <View>
           <View style={mergedStyles.container}>
-            <View style={styles.header}>
-              <Pressable onPress={previousMonth}>
-                {monthPrevButton || (
-                  <Image
-                    resizeMode="contain"
-                    style={mergedStyles.monthButtons}
-                    source={chevronL}
-                  ></Image>
-                )}
-              </Pressable>
+            <View style={mergedStyles.header}>
+              {!minDate || _moment(minDate).date(1).date(1).diff(_moment(displayedDate).date(1).subtract(1,"months"),"months")<=0 &&
+                <Pressable onPress={previousMonth}>
+                  {monthPrevButton || (
+                    <Image
+                      resizeMode="contain"
+                      style={mergedStyles.monthButtons}
+                      source={chevronL}
+                    />
+                  )}
+                </Pressable>
+              }
+              {!!minDate && _moment(minDate).date(1).diff(_moment(displayedDate).date(1).subtract(1,"months"),"months")>0 &&
+                <View style={{opacity:0.5}}>
+                  {monthPrevButton || (
+                    <Image
+                      resizeMode="contain"
+                      style={{...mergedStyles.monthButtons,opacity:0.5}}
+                      source={chevronL}
+                    />
+                  )}
+                </View>
+              }
               <Text style={mergedStyles.headerText}>
                 {displayedDate.format("MMMM") +
                   " " +
                   displayedDate.format("YYYY")}
               </Text>
-              <Pressable onPress={nextMonth}>
-                {monthNextButton || (
-                  <Image
-                    resizeMode="contain"
-                    style={mergedStyles.monthButtons}
-                    source={chevronR}
-                  />
-                )}
-              </Pressable>
+              {!maxDate || _moment(maxDate).date(28).diff(_moment(displayedDate).date(28).add(1,"months"),"months")>=0 &&
+                <Pressable onPress={nextMonth}>
+                  {monthNextButton || (
+                    <Image
+                      resizeMode="contain"
+                      style={mergedStyles.monthButtons}
+                      source={chevronR}
+                    />
+                  )}
+                </Pressable>
+              }
+              {!!maxDate && _moment(maxDate).date(28).diff(_moment(displayedDate).date(28).add(1,"months"),"months")<0 &&
+                <View style={{opacity:0.5}}>
+                  {monthNextButton || (
+                    <Image
+                      resizeMode="contain"
+                      style={mergedStyles.monthButtons}
+                      source={chevronR}
+                    />
+                  )}
+                </View>
+              }
             </View>
             <View style={styles.calendar}>
               {dayHeaders && (

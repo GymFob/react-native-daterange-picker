@@ -45,25 +45,23 @@ const Day = ({
     ...selectedTextStyle,
   };
   return (
-    <Pressable key={"day-" + index} onPress={empty ? null : selectThis}>
-      <View style={styles.day}>
-        <View
+    <Pressable key={"day-" + index} onPress={empty ? null : selectThis} style={styles.day}>
+      <View
+        style={{
+          ...dayStyles,
+          ...(selected && selectedStyles),
+          ...(disabled && disabledStyles),
+        }}
+      >
+        <Text
           style={{
-            ...dayStyles,
-            ...(selected && selectedStyles),
-            ...(disabled && disabledStyles),
+            ...dayTextStyles,
+            ...(selected && selectedTextStyles),
+            ...(disabled && disabledTextStyles),
           }}
         >
-          <Text
-            style={{
-              ...dayTextStyles,
-              ...(selected && selectedTextStyles),
-              ...(disabled && disabledTextStyles),
-            }}
-          >
-            {index}
-          </Text>
-        </View>
+          {index}
+        </Text>
       </View>
     </Pressable>
   );
