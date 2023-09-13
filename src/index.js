@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
   Pressable,
   View,
   Image,
@@ -331,14 +330,14 @@ const DateRangePicker = ({
       <View style={mergedStyles.backdrop}>
         {/* <Pressable
           style={styles.closeTrigger}
-          onPress={_onClose}
+          onPress={'.'}
         >
           <View style={styles.closeContainer} />
         </Pressable> */}
         <View>
           <View style={mergedStyles.container}>
             <View style={styles.header}>
-              <TouchableOpacity onPress={previousMonth}>
+              <Pressable onPress={previousMonth}>
                 {monthPrevButton || (
                   <Image
                     resizeMode="contain"
@@ -346,13 +345,13 @@ const DateRangePicker = ({
                     source={chevronL}
                   ></Image>
                 )}
-              </TouchableOpacity>
+              </Pressable>
               <Text style={mergedStyles.headerText}>
                 {displayedDate.format("MMMM") +
                   " " +
                   displayedDate.format("YYYY")}
               </Text>
-              <TouchableOpacity onPress={nextMonth}>
+              <Pressable onPress={nextMonth}>
                 {monthNextButton || (
                   <Image
                     resizeMode="contain"
@@ -360,7 +359,7 @@ const DateRangePicker = ({
                     source={chevronR}
                   />
                 )}
-              </TouchableOpacity>
+              </Pressable>
             </View>
             <View style={styles.calendar}>
               {dayHeaders && (

@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 // import { height, width } from "../../modules";
 
 const Day = ({
@@ -45,7 +45,7 @@ const Day = ({
     ...selectedTextStyle,
   };
   return (
-    <TouchableOpacity key={"day-" + index} onPress={empty ? null : selectThis}>
+    <Pressable key={"day-" + index} onPress={empty ? null : selectThis}>
       <View style={styles.day}>
         <View
           style={{
@@ -65,7 +65,7 @@ const Day = ({
           </Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

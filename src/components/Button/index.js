@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 
 const Button = ({ children, onPress, buttonStyle, buttonTextStyle }) => {
   const mergedStyles = {
@@ -13,9 +13,9 @@ const Button = ({ children, onPress, buttonStyle, buttonTextStyle }) => {
     },
   };
   return (
-    <TouchableOpacity onPress={onPress} style={mergedStyles.button}>
+    <Pressable onPress={onPress} style={mergedStyles.button}>
       <Text style={mergedStyles.buttonText}>{children}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
