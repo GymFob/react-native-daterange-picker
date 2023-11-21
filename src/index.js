@@ -22,8 +22,10 @@ const DateRangePicker = ({
   onChange,
   displayedDate,
   minDate,
-  date,
   maxDate,
+  blockedDates,
+  blockedDaysOfWeek,
+  date,
   range,
   dayHeaderTextStyle,
   dayHeaderStyle,
@@ -132,11 +134,26 @@ const DateRangePicker = ({
     );
   }, []);
 
-  const disabled = useCallback((_date, _minDate, _maxDate) => {
-    return (
-      (_minDate && _date.isBefore(_minDate, "day")) ||
-      (_maxDate && _date.isAfter(_maxDate, "day"))
-    );
+  const disabled = useCallback((_date, _minDate, _maxDate, _blockedDates, _blockedDaysOfWeek) => {
+    if (_minDate && _date.isBefore(_minDate, "day")) {
+      return true;
+    }
+    if (_maxDate && _date.isAfter(_maxDate, "day")) {
+      return true;
+    }
+    if (!!_blockedDates && Array.isArray(_blockedDates) && _blockedDates.length) {
+      const _blockedDateIndex = _blockedDates.findIndex(_d=>(_date.isSame(_d, "day")));
+      if (_blockedDateIndex>-1) {
+        return true;
+      }
+    }
+    if (!!_blockedDaysOfWeek && Array.isArray(_blockedDaysOfWeek) && _blockedDaysOfWeek.length) {
+      const _blockedDowIndex = _blockedDaysOfWeek.findIndex(_dow=>(_dow===_date.day()));
+      if (_blockedDowIndex>-1) {
+        return true;
+      }
+    }
+    return false;
   }, []);
 
   const today = () => {
@@ -251,7 +268,7 @@ const DateRangePicker = ({
       for (let i = 1; i <= daysInMonth; ++i) {
         let _date = _moment(displayedDate).set("date", i);
         let _selected = selected(_date, startDate, endDate, date);
-        let _disabled = disabled(_date, minDate, maxDate);
+        let _disabled = disabled(_date, minDate, maxDate, blockedDates, blockedDaysOfWeek);
         week.push(
           <Day
             key={`day-${i}`}
